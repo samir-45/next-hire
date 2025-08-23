@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Providers from "./Providers";
+import PrelineWrapper from "./components/PrelineWrapper";
+import Nav from "./components/nav";
+import Footer from "./components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,12 +21,23 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  //   useEffect(() => {
+  //   // Preline runs in browser only
+  //   import("preline/preline");
+  // }, []);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        
+        <PrelineWrapper><Providers>
+          <Nav></Nav>
+          {children}
+          <Footer></Footer>
+          </Providers></PrelineWrapper>
       </body>
     </html>
   );
